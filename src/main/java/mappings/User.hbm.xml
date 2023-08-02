@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name = "beans.User" table="Sample">
+		<cache usage="read-write"></cache>
+		<id name="name" column="name"></id>
+		<property name="age" column="age"></property>
+	</class>
+	<sql-query name="userQuery">
+		select * from sample where age > :age
+		<return alias="user" class="beans.User"/>
+	</sql-query>
+	<sql-query name="userSP" callable="true">
+		{call queryuser()}
+		<return alias="user" class="beans.User"/>
+	</sql-query>
+</hibernate-mapping>
+
+<!-- 
+The mapping document is an XML document having 
+<hibernate-mapping> as the root element, which contains all the <class> elements.
+1. name attribute of the class element
+2. the database table name is specified using the table attribute
+3. <id> element maps the unique ID attribute in class to the primary key of the database table
+4. <property> element is used to map a Java class property to a column in the database table
+One bean map to one table
+ -->

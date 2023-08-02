@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+ <hibernate-configuration>
+    <session-factory>
+        <property name="show_sql">true</property>
+        <property name="format_sql">false</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <!-- enable second level cache and query cache -->
+        <!--hibernate.cache.use_query_cache is used to enable the query cache-->
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="connection.driver_class">
+            com.mysql.cj.jdbc.Driver
+        </property>
+        <property name="connection.url">
+            jdbc:mysql://127.0.0.1:3306/usc
+        </property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456</property>
+        <property name="cache.provider_class">
+              org.hibernate.cache.EhCacheProvider
+        </property>
+        <mapping resource="mappings/User.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>
+
+
+<!--https://www.digitalocean.com/community/tutorials/hibernate-ehcache-hibernate-second-level-cache-->
